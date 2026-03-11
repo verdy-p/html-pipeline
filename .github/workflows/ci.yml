@@ -11,10 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@58077d3c7e43986b6b15fba718e8ea69e387dfcc # v2.15.1
+        with:
+          egress-policy: audit
+
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
 
       - name: Set up Ruby
-        uses: yettoapp/actions/setup-languages@main
+        uses: yettoapp/actions/setup-languages@065eea0e3ebee960cb43a0ea70e54822fe1bf152 # main
         with:
           ruby: true
 
